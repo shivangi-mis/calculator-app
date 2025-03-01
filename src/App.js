@@ -16,12 +16,12 @@ export default function App() {
   };
 
   const calculateResult = () => {
-    try {
-      setResult(eval(input)); // Using eval with caution
-    } catch (error) {
-      setResult("Error");
-    }
-  };
+  try {
+    setResult(new Function(`return (${input})`)()); // Safe alternative
+  } catch (error) {
+    setResult("Error");
+  }
+};
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg w-64 shadow-lg mx-auto mt-20">
